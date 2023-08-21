@@ -6,13 +6,27 @@
 </head>
 <body>
 <div id="player"></div>
-<script src="https://cdn.bootcdn.net/ajax/libs/dplayer/1.27.1/DPlayer.min.js"></script>
+<!-- https://cdnjs.com/libraries/flv.js/1.6.2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.6.2/flv.min.js"></script>
+<!-- https://cdnjs.com/libraries/hls.js/1.4.10 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.10/hls.min.js"></script>
+<!-- https://cdnjs.com/libraries/dplayer/1.27.1 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.27.1/DPlayer.min.js"></script>
 <script>
     const dp = new DPlayer({
-        container: document.getElementById('player'),
+        element: document.getElementById('player'),
+        screenshot: true,
         video: {
-            url: 'http://mirror.aarnet.edu.au/pub/TED-talks/911Mothers_2010W-480p.mp4',
-            type: 'mp4',
+            quality: [{
+                name: 'hls',
+                url: 'https://pcdn-live.qcv.qcloud.com/v1/get/dev.ad.qvb.qcloud.com/live/teststream_td.m3u8',
+                type: 'hls'
+            },{
+                name: 'flv',
+                url: 'https://sf1-hscdn-tos.pstatp.com/obj/media-fe/xgplayer_doc_video/flv/xgplayer-demo-360p.flv',
+                type: 'flv'
+            }],
+            defaultQuality: 0
         },
     });
 </script>
