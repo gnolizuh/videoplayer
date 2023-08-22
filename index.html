@@ -5,8 +5,8 @@
     <title>PCDN</title>
 </head>
 <body>
-<div style="position: relative; height: 100vh;">
-    <div id="player" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+<div style="display: grid; place-items: center; height: 100vh;">
+    <div id="player">player</div>
 </div>
 <!-- https://cdnjs.com/libraries/flv.js/1.6.2 -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flv.js/1.6.2/flv.min.js"></script>
@@ -29,7 +29,7 @@
                 url: 'http://pcdn-live.qcv.qcloud.com/v1/get/pcdn.txclivecdn.com/live/pcdn.flv',
                 type: 'flv'
             }],
-            defaultQuality: 1
+            defaultQuality: 0
         },
     });
 </script>
