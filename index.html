@@ -31,7 +31,25 @@
 <body>
 <div class="center-div">
     <button class="button" onclick="window.location.href='hlsjs.html';">HLS</button>
-    <button class="button" onclick="window.location.href='flvjs.html';">FLV</button>
+    <button id="flv-button" class="button" onclick="window.location.href='flvjs.html';">FLV</button>
 </div>
+<script>
+    function isIOS() {
+        return [
+                'iPad Simulator',
+                'iPhone Simulator',
+                'iPod Simulator',
+                'iPad',
+                'iPhone',
+                'iPod'
+            ].includes(navigator.platform)
+            || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+    }
+
+    const button = document.getElementById("flv-button");
+    if (isIOS()) {
+        button.style.display = "none";
+    }
+</script>
 </body>
 </html>
