@@ -11,13 +11,23 @@
 <script src="https://cdn.staticfile.org/flv.js/1.6.2/flv.min.js"></script>
 <script src="https://cdn.staticfile.org/dplayer/1.27.1/DPlayer.min.js"></script>
 <script>
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, '\\$&');
+        const regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'), results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    }
+
+    const resolution = getParameterByName('resolution');
     const dp = new DPlayer({
         container: document.getElementById('player'),
         live: true,
         preload: 'auto',
         autoplay: true,
         video: {
-            url: 'https://pcdn-live.qcv.qcloud.com/v1/get/5000.liveplay.myqcloud.com/live/pcdn.flv',
+            url: 'https://pcdn-live.qcv.qcloud.com/v1/get/5000.liveplay.myqcloud.com/live/pcdn_'+resolution+'p.flv',
             type: 'flv'
         },
     });

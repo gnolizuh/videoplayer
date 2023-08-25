@@ -5,15 +5,32 @@
     <title>PCDN TEST</title>
 </head>
 <style>
-    .center-div {
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .grid-container-2x3 {
         display: grid;
+        height: 100%;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .grid-container-1x3 {
+        display: grid;
+        height: 100%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+    }
+    .grid-item {
+        border: 0;
+        display: flex;
         justify-content: center;
         align-items: center;
-        height: 100vh;
-        text-align: center;
     }
-
-    .button {
+    .button-green {
         background-color: #4CAF50; /* Green */
         border: none;
         color: white;
@@ -24,14 +41,37 @@
         margin: 4px 2px;
         cursor: pointer;
         font-size: 100px;
-        height: 200px;
-        width: 300px;
+        height: 300px;
+        width: 400px;
+    }
+    .button-red {
+        background-color: #ff0000;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        margin: 4px 2px;
+        cursor: pointer;
+        font-size: 100px;
+        height: 300px;
+        width: 400px;
     }
 </style>
 <body>
-<div class="center-div">
-    <button class="button" onclick="window.location.href='hlsjs.html';">HLS</button>
-    <button id="flv-button" class="button" onclick="window.location.href='flvjs.html';">FLV</button>
+<div id="grid-container-1x3" class="grid-container-1x3">
+    <div class="grid-item"><button class="button-red" onclick="window.location.href='hlsjs.html?resolution=720';">HLS 720</button></div>
+    <div class="grid-item"><button class="button-red" onclick="window.location.href='hlsjs.html?resolution=1080';">HLS 1080</button></div>
+    <div class="grid-item"><button class="button-red" onclick="window.location.href='hlsjs.html?resolution=1080';">HLS 2160</button></div>
+</div>
+<div id="grid-container-2x3" class="grid-container-2x3">
+    <div class="grid-item"><button class="button-red" onclick="window.location.href='hlsjs.html?resolution=720';">HLS 720</button></div>
+    <div class="grid-item"><button class="button-green" onclick="window.location.href='flvjs.html?resolution=720';">FLV 720</button></div>
+    <div class="grid-item"><button class="button-red" onclick="window.location.href='hlsjs.html?resolution=1080';">HLS 1080p</button></div>
+    <div class="grid-item"><button class="button-green" onclick="window.location.href='flvjs.html?resolution=1080';">FLV 1080</button></div>
+    <div class="grid-item"><button class="button-red" onclick="window.location.href='hlsjs.html?resolution=1080';">HLS 2160</button></div>
+    <div class="grid-item"><button class="button-green" onclick="window.location.href='flvjs.html?resolution=1080';">FLV 2160</button></div>
 </div>
 <script>
     function isIOS() {
@@ -46,9 +86,12 @@
             || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
     }
 
-    const button = document.getElementById("flv-button");
+    const grid_container_1x3 = document.getElementById("grid-container-1x3");
+    const grid_container_2x3 = document.getElementById("grid-container-2x3");
     if (isIOS()) {
-        button.style.display = "none";
+        grid_container_2x3.style.display = "none";
+    } else {
+        grid_container_1x3.style.display = "none";
     }
 </script>
 </body>
